@@ -30,44 +30,49 @@ def dice
 end
 
 
-def action(dice_value)
 
+def action(dice_value, floor_value)
     
-floor = 9
-  if floor == 10
-      puts " Félicitations, tu as gagné!"
-
-  else
     if (dice_value == 5 || dice_value == 6)
-      floor += 1
-      puts "Tu avances d'une marche, tu es donc à la marche n°#{floor}"
+      floor_value += 1
+      puts "Tu avances d'une marche, tu es donc à la marche n°#{floor_value}"
       puts "----------------------------------------------------------"
       puts "                                                          "
       
-      play
+      
 
     elsif (dice_value == 1)
-      floor -= 1
-      puts "Tu descends d'une marche, tu es donc à la marche n°#{floor}"
+      floor_value -= 1
+      puts "Tu descends d'une marche, tu es donc à la marche n°#{floor_value}"
       puts "----------------------------------------------------------"
       puts "                                                          "
       
-      play
+      
 
     else
-      puts "Tu n'avances pas, tu es donc resté à la marche n°#{floor}"
+      puts "Tu n'avances pas, tu es donc resté à la marche n°#{floor_value}"
       puts "----------------------------------------------------------"
       puts "                                                          "
+       
       
-      play
     end
-  end
+    
+    return floor_value
 
 end
 
+
+
 def play
+
+  floor_value=9
   dice_value = dice 
-  action(dice_value)
+  floor_value = action(dice_value, floor_value)
+  if floor_value == 10
+    puts "Félicitations tu es arrivé au 10ème étage!!"
+  else
+    play    
+  end
 end
 
 
